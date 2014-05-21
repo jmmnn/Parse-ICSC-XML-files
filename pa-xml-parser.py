@@ -22,21 +22,23 @@ print 'root attrib : ' , root.attrib
 # for dataXML in root.iter('dataXML'):
 #     print dataXML[0].tag , dataXML[0].text
 
-# #this works to create a dict per row - however will fail if values are missing
-# for dataXML in root.iter('dataXML'):
-#     dicto = {dataXML[0].tag : dataXML[0].text, dataXML[1].tag : dataXML[1].text }
-#     print dicto
-
-# this works but has too many lists
+#this works to create a dict per row - however will fail if values are missing
 for dataXML in root.iter('dataXML'):
-    renglon = []
-    for i in range(0, len(dataXML)):
-        item = {}
-        item[i] = {dataXML[i].tag : dataXML[i].text}
-        renglon.append(item[i])
-    print renglon
+    dicto = {dataXML[0].tag : dataXML[0].text, dataXML[1].tag : dataXML[1].text , dataXML[2].tag : dataXML[2].text, dataXML[3].tag : dataXML[3].text }
+    #print dicto
+    values.append(dicto)
+
+
+# # this works but has too many lists
+# for dataXML in root.iter('dataXML'):
+#     renglon = []
+#     for i in range(0, len(dataXML)):
+#         item = {}
+#         item[i] = {dataXML[i].tag : dataXML[i].text}
+#         renglon.append(item[i])
+#     print renglon
 
 
 #format as JSON
 import json
-#print json.dumps(renglon)
+print json.dumps(values)
