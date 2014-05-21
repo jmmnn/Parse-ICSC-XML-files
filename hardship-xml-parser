@@ -1,0 +1,28 @@
+import xml.etree.ElementTree as ET
+tree = ET.ElementTree(file='HARDSHIP_XML.xml')
+root = tree.getroot()
+# print date file was updated
+print 'root attributes:' , root.attrib
+
+values = []
+for hardship in root.findall('HARDSHIP_XML'):
+ ds_id = hardship.find('DS_ID').text
+ if hardship.find('Country') == None:
+     country = 'Not_Available'
+ else:
+     country = hardship.find('Country').text
+
+ area = hardship.find('Area').text
+ eff_date = hardship.find('EFF_DATE').text
+ classification = hardship.find('Class').text
+
+ for row in hardship:
+     dicto = {'ds_id' : ds_id , 'country' : country , 'area' : area , 'eff_date' : eff_date , 'classification' : classification}
+ values.append(dicto)
+
+print 'Total number of records :' , len(values)
+#print values
+
+#format as JSON
+import json
+print json.dumps(values)
